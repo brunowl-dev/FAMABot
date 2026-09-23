@@ -43,11 +43,11 @@ def esperaTempo():
         toast = Notification(
         app_id="FAMA Notificações",
         title="Alerta",
-        msg=f"10 SEGUNDOS",
+        msg="30 SEGUNDOS",
         icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
         )
         toast.show()
-        parar.wait(10)
+        parar.wait(30)
 
 t1 = threading.Thread(target=defineStray)
 t2 = threading.Thread(target=esperaTempo)

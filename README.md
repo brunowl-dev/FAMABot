@@ -16,7 +16,7 @@ O escritório conta com máquinas de baixo desempenho, então a arquitetura evit
 
 ## Roadmap de versões
 
-### v1 — Aplicação de bandeja (tray app)
+### v1 — Aplicação de bandeja (tray app) ✅
 Aplicação Python que roda na bandeja do sistema, com ícone, menu e disparo de notificações nativas (toast). Nessa etapa ainda não há integração com WhatsApp ou backend — é a base da aplicação cliente.
 
 ### v2 — Configuração do bot no WhatsApp

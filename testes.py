@@ -1,7 +1,6 @@
 import pystray
 from PIL import Image
 from winotify import Notification
-import time
 import threading
 
 parar = threading.Event()
@@ -56,4 +55,5 @@ def main():
     t1.start()
     t2.start()
 
-main()
+if __name__ == "__main__":
+    main()

@@ -19,7 +19,7 @@ O escritório conta com máquinas de baixo desempenho, então a arquitetura evit
 ### v1 — Aplicação de bandeja (tray app) ✅
 Aplicação Python que roda na bandeja do sistema, com ícone, menu e disparo de notificações nativas (toast). Nessa etapa ainda não há integração com WhatsApp ou backend — é a base da aplicação cliente.
 
-### v2 — Configuração do bot no WhatsApp
+### v2 — Configuração do bot no WhatsApp 
 Configuração da conta no Meta for Developers, número de teste, webhook (Flask + ngrok) e menu de opções (Contábil, Fiscal, RH, Administrativo, Dúvidas, Sair) no fluxo de conversa do WhatsApp.
 
 ### v3 — Integração aplicação ↔ bot
@@ -30,4 +30,4 @@ Fechamento do fluxo completo: cliente escolhe uma opção no menu do WhatsApp �
 
 ## Status atual
 
-🚧 Em desenvolvimento — v1 em andamento.
+🚧 Em desenvolvimento — v2 em andamento.

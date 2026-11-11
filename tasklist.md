@@ -10,8 +10,8 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 
 ## Fase 0 — Organização
 - [~] 0.1 Estruturar o repositório
-  - [~] Pastas `backend/`, `tray_app/`, `tests/`, `docs/` e arquivos movidos (falta add + commit do rename)
-  - [ ] venv + `requirements.txt` do tray
+  - [x] Pastas `backend/`, `tray_app/`, `tests/`, `docs/` e arquivos movidos
+  - [x] venv + `requirements.txt` do tray
   - [ ] venv + `requirements.txt` do backend
   - [ ] `.gitignore`
   - [ ] `.env.example`
@@ -85,5 +85,5 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 
 ## Pendências conhecidas
 - README cita WebSocket: trocar por SSE (0.2)
-- `tray.py` com caminho do logo fixo (`c:/users/visitante/...`), quebrado desde a mudança de pasta (0.4)
+- `testes.py` abre `"logo.png"` relativo ao diretório de execução, mas o arquivo está em `assets/`: o ícone não sobe (0.4)
 - `.gitignore` atual usa `/__pycache__`, que só ignora a raiz (0.1)

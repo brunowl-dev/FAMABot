@@ -31,6 +31,8 @@ Quem abre a conexão é sempre o tray. Assim, os PCs do escritório não precisa
 
 ## Principais decisões
 
+Resumo abaixo. O detalhamento, com as alternativas descartadas, está em [docs/decisoes.md](docs/decisoes.md).
+
 | Decisão | Motivo |
 |---|---|
 | Webhook em vez de polling | menor latência, sem gastar recurso à toa, sem falha silenciosa |

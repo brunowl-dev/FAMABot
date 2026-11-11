@@ -15,8 +15,8 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
   - [x] venv + `requirements.txt` do backend
   - [x] `.gitignore`
   - [x] `.env.example` (em `backend/`)
-- [~] 0.2 `CLAUDE.md` e README inicial
-- [ ] 0.3 `docs/decisoes.md`: decisões arquiteturais e o motivo de cada descarte
+- [x] 0.2 `CLAUDE.md` e README inicial
+- [x] 0.3 `docs/decisoes.md`: decisões arquiteturais e o motivo de cada descarte
 - [ ] 0.4 Revisar o tray app (Etapas 1 a 3) e propor refatoração mínima
 
 ## Fase 1 — Back-end base (Flask)

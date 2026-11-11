@@ -2,6 +2,7 @@
 .env*
 backend/responsaveis.json
 config.json
+!.env.example
 
 # Python
 __pycache__

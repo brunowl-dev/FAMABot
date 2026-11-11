@@ -12,8 +12,8 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 - [~] 0.1 Estruturar o repositório
   - [x] Pastas `backend/`, `tray_app/`, `tests/`, `docs/` e arquivos movidos
   - [x] venv + `requirements.txt` do tray
-  - [ ] venv + `requirements.txt` do backend
-  - [ ] `.gitignore`
+  - [x] venv + `requirements.txt` do backend
+  - [~] `.gitignore`
   - [ ] `.env.example`
 - [ ] 0.2 `CLAUDE.md` (rascunho criado) e README inicial
 - [ ] 0.3 `docs/decisoes.md`: decisões arquiteturais e o motivo de cada descarte

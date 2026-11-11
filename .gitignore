@@ -1,1 +1,10 @@
-/__pycache__
+# Dados sensíveis
+.env*
+backend/responsaveis.json
+config.json
+
+# Python
+__pycache__
+.venv/
+build/
+dist/

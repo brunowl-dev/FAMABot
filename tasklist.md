@@ -9,13 +9,13 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 - [x] Tray app Etapa 3: loop paralelo ao ícone com `threading.Event`
 
 ## Fase 0 — Organização
-- [~] 0.1 Estruturar o repositório
+- [x] 0.1 Estruturar o repositório
   - [x] Pastas `backend/`, `tray_app/`, `tests/`, `docs/` e arquivos movidos
   - [x] venv + `requirements.txt` do tray
   - [x] venv + `requirements.txt` do backend
-  - [~] `.gitignore`
-  - [ ] `.env.example`
-- [ ] 0.2 `CLAUDE.md` (rascunho criado) e README inicial
+  - [x] `.gitignore`
+  - [x] `.env.example` (em `backend/`)
+- [~] 0.2 `CLAUDE.md` e README inicial
 - [ ] 0.3 `docs/decisoes.md`: decisões arquiteturais e o motivo de cada descarte
 - [ ] 0.4 Revisar o tray app (Etapas 1 a 3) e propor refatoração mínima
 
@@ -84,6 +84,4 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 - [ ] 11.4 O que aprendi e o que faria diferente
 
 ## Pendências conhecidas
-- README cita WebSocket: trocar por SSE (0.2)
 - `testes.py` abre `"logo.png"` relativo ao diretório de execução, mas o arquivo está em `assets/`: o ícone não sobe (0.4)
-- `.gitignore` atual usa `/__pycache__`, que só ignora a raiz (0.1)

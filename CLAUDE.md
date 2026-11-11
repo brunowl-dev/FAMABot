@@ -24,7 +24,9 @@ Fluxo de cada task:
 ## Nível do Bruno
 - Python bom (POO, arquivos, CSV, app CLI). **Java é a linguagem mais forte**, use analogias.
 - Aprendendo agora: Flask, HTTP/webhooks, SSE, threads em rede.
-- Nunca fez: venv, `.gitignore`, `.env`. Não assuma conhecimento de ferramentas de ambiente/infra.
+- Fez pela primeira vez na 0.1: venv, `requirements.txt`, `.gitignore`, `.env`/`.env.example`. Ainda assim, não assuma conhecimento de ferramentas de ambiente/infra.
+- Detalhe de sintaxe de ferramenta (padrões de `.gitignore`, flags de comando): explique o conceito e entregue pronto, sem pistas. Pistas são para back-end e lógica.
+- Java: domina a linguagem, não o ecossistema. Ao citar framework (Maven, Spring), dê uma linha de contexto.
 - SQL e modelagem básicas, TDD/JUnit básico, Docker/WSL superficial, Cloud zero.
 
 ## O sistema

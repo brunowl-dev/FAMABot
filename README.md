@@ -1,33 +1,94 @@
 # FAMA Bot — Atendimento automatizado via WhatsApp
 
-Chatbot de WhatsApp para automatizar o atendimento de clientes de uma contabilidade (FAMA), roteando o cliente para o setor correto (Contábil, Fiscal, RH, Administrativo) e notificando os funcionários responsáveis em tempo real, através de uma aplicação leve rodando na bandeja do sistema (system tray) de cada máquina.
+Chatbot de WhatsApp que faz a triagem dos clientes de um escritório de contabilidade (FAMA). O cliente escolhe o assunto num menu, e o funcionário responsável recebe na hora uma notificação nativa do Windows, enviada por um app leve que fica na bandeja do sistema (system tray).
 
-## Contexto
+## Como funciona
 
-O escritório conta com máquinas de baixo desempenho, então a arquitetura evita soluções pesadas em recursos (como navegador sempre aberto). A notificação chega via aplicação nativa de bandeja, conectada ao backend em tempo real (WebSocket), sem polling.
+```mermaid
+sequenceDiagram
+    participant C as Cliente (WhatsApp)
+    participant M as WhatsApp Cloud API
+    participant B as Backend (Flask)
+    participant T as Tray app (PC do funcionário)
+
+    T->>B: GET /eventos/<pessoa> (conexão SSE fica aberta)
+    C->>M: mensagem
+    M->>B: POST /webhook
+    B->>M: responde com o menu
+    C->>M: escolhe setor / assunto
+    M->>B: POST /webhook
+    B->>B: roteia e põe o evento na fila do responsável
+    B-->>T: evento via SSE
+    T->>T: notificação toast no Windows
+```
+
+1. O cliente manda mensagem e navega por um menu: **Contábil, Fiscal, RH, Administrativo, Dúvidas**.
+2. O backend recebe tudo por **webhook**, sem polling, e decide quem é o responsável.
+3. O evento entra numa **fila por pessoa**.
+4. O tray do funcionário fica conectado ao backend por **SSE** e mostra a notificação assim que o evento chega.
+
+Quem abre a conexão é sempre o tray. Assim, os PCs do escritório não precisam de servidor, IP fixo ou porta aberta no firewall.
+
+## Principais decisões
+
+| Decisão | Motivo |
+|---|---|
+| Webhook em vez de polling | menor latência, sem gastar recurso à toa, sem falha silenciosa |
+| SSE em vez de WebSocket | a comunicação é só backend → tray; SSE é HTTP comum, mais simples e passa por proxy/firewall sem configuração extra |
+| Tray nativo (`pystray` + `winotify`) | as máquinas do escritório são fracas: nada de navegador aberto ou Electron |
+| Uma fila por pessoa | cada funcionário recebe só o que é dele |
+| Um venv por componente | o `.exe` do tray (PyInstaller) não carrega Flask e afins |
 
 ## Stack
 
-- **Backend**: Python + Flask (modelo event-driven via webhook)
-- **Notificações**: Python + `pystray` (ícone de bandeja) + `winotify` (toast nativo do Windows)
-- **Comunicação backend ↔️ tray app**: WebSocket
-- **WhatsApp**: WhatsApp Cloud API (Meta)
-- **Desenvolvimento local**: ngrok (tunelamento do webhook)
+- **Backend:** Python, Flask, WhatsApp Cloud API (Meta)
+- **Tray app:** Python, `pystray`, `winotify`, Tkinter (configuração)
+- **Testes:** pytest
+- **Dev local:** ngrok para expor o webhook
+- **Deploy (planejado):** Docker para o backend, PyInstaller para o tray
 
-## Roadmap de versões
+## Estrutura
 
-### v1 — Aplicação de bandeja (tray app) ✅
-Aplicação Python que roda na bandeja do sistema, com ícone, menu e disparo de notificações nativas (toast). Nessa etapa ainda não há integração com WhatsApp ou backend — é a base da aplicação cliente.
+```
+backend/     # Flask: webhook, menu, filas, SSE
+tray_app/    # app de bandeja (Windows)
+tests/       # testes do backend e do tray
+docs/        # decisões e diagramas
+```
 
-### v2 — Configuração do bot no WhatsApp 
-Configuração da conta no Meta for Developers, número de teste, webhook (Flask + ngrok) e menu de opções (Contábil, Fiscal, RH, Administrativo, Dúvidas, Sair) no fluxo de conversa do WhatsApp.
+## Rodando localmente
 
-### v3 — Integração aplicação ↔ bot
-Conexão entre o backend do bot e as aplicações de bandeja via WebSocket, permitindo que o servidor envie eventos para os clientes conectados.
+Requer **Python 3.13+** no Windows. Cada componente tem o próprio ambiente virtual:
 
-### v4 — Disparo de notificações a partir do WhatsApp
-Fechamento do fluxo completo: cliente escolhe uma opção no menu do WhatsApp → backend identifica o setor → evento é enviado via WebSocket → aplicação de bandeja do(s) funcionário(s) do setor exibe a notificação nativa.
+```powershell
+# Tray app
+cd tray_app
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 
-## Status atual
+# Backend
+cd ..\backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+copy .env.example .env   # e preencha as chaves
+```
 
-🚧 Em desenvolvimento — v2 em andamento.
+> Se o PowerShell bloquear o `Activate.ps1`, rode uma vez: `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`.
+
+## Privacidade
+
+O repositório é público. Tokens ficam só no `.env`, e o mapeamento real setor → funcionário → contato fica num arquivo local fora do Git. Os arquivos `.example` e os testes usam só dados fictícios, e o conteúdo das mensagens dos clientes não é registrado em log.
+
+## Status
+
+🚧 **Em desenvolvimento.**
+
+- ✅ Tray app: ícone, menu e notificações toast
+- ✅ Estrutura do repositório e ambientes
+- ⏳ Backend Flask e webhook do WhatsApp
+- ⏳ Menu, filas por pessoa e SSE
+- ⏳ Empacotamento e deploy
+
+O passo a passo detalhado está em [tasklist.md](tasklist.md).

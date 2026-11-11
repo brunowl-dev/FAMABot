@@ -28,9 +28,10 @@ Fluxo de cada task:
 - SQL e modelagem básicas, TDD/JUnit básico, Docker/WSL superficial, Cloud zero.
 
 ## O sistema
-1. O cliente manda mensagem no WhatsApp da FAMA e recebe um menu.
+1. O cliente manda mensagem no WhatsApp da FAMA e passa por um menu pré-configurado para escolher o setor conforme o assunto.
 2. O bot roteia para Contábil, Fiscal, RH, Administrativo, Dúvidas ou Sair.
-3. Ao escolher setor/sub-opção, o backend notifica o responsável pelo app de bandeja (system tray) no PC dele.
+3. Ao escolher setor/sub-opção, o backend coloca um evento na fila do responsável.
+4. O app de bandeja (system tray) no PC do funcionário fica **conectado ao backend** (SSE em `/eventos/<pessoa>`), recebe o evento e mostra a notificação. Quem abre a conexão é sempre o tray: o backend nunca chama o PC (sem servidor nem IP fixo nas máquinas, e a conexão sai de dentro da rede da FAMA, passando pelo firewall).
 
 ### Menu
 | Setor | Sub-opções | Destino |

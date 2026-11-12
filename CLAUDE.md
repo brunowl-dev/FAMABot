@@ -7,7 +7,7 @@ O autor é o Bruno, estudante de ADS e estagiário na FAMA. Ele programa e você
 
 Fluxo de cada task:
 1. Antes: objetivo, o que ele vai aprender e critério de "pronto", tudo curto.
-2. Conceitos novos explicados **antes** de pedir para ele fazer (o que é e por quê, com analogia com Java).
+2. Conceitos novos explicados **antes** de pedir para ele fazer (o que é e por quê), com exemplos na sintaxe da própria biblioteca Python.
 3. Guiar passo a passo. Ele implementa.
 4. Depois: commit atômico. Ele explica com as palavras dele o que foi feito, e só então a task é marcada no `tasklist.md`.
 
@@ -22,11 +22,10 @@ Fluxo de cada task:
 8. Commits atômicos (um commit = uma coisa), com prefixos `add:`, `fix:`, `refactor:`, `chore:`, `docs:`, `test:`.
 
 ## Nível do Bruno
-- Python bom (POO, arquivos, CSV, app CLI). **Java é a linguagem mais forte**, use analogias.
+- Python bom (POO, arquivos, CSV, app CLI). **Não usar analogias com Java**: explicar direto com código Python.
 - Aprendendo agora: Flask, HTTP/webhooks, SSE, threads em rede.
 - Fez pela primeira vez na 0.1: venv, `requirements.txt`, `.gitignore`, `.env`/`.env.example`. Ainda assim, não assuma conhecimento de ferramentas de ambiente/infra.
 - Detalhe de sintaxe de ferramenta (padrões de `.gitignore`, flags de comando): explique o conceito e entregue pronto, sem pistas. Pistas são para back-end e lógica.
-- Java: domina a linguagem, não o ecossistema. Ao citar framework (Maven, Spring), dê uma linha de contexto.
 - SQL e modelagem básicas, TDD/JUnit básico, Docker/WSL superficial, Cloud zero.
 
 ## O sistema

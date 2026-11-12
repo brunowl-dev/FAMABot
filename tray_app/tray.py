@@ -2,7 +2,10 @@ import pystray
 from PIL import Image
 from winotify import Notification
 import threading
+from pathlib import Path
 
+PASTA_DO_TRAY = Path(__file__).parent
+LOGO = PASTA_DO_TRAY / "assets" / "logo.png" 
 parar = threading.Event()
 
 def cria_notificacao(titulo, mensagem=""):
@@ -10,7 +13,7 @@ def cria_notificacao(titulo, mensagem=""):
         app_id="FAMA Notificações",
         title=titulo,
         msg=mensagem,
-        icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
+        icon=str(LOGO)
     )
 
 def sair(icon):
@@ -24,7 +27,7 @@ def notifica_setor(icon, setor):
     toast.show()
 
 def defineStray():
-    imagem = Image.open("logo.png")
+    imagem = Image.open(LOGO)
 
     menu = pystray.Menu(
         pystray.MenuItem("Sair", sair),

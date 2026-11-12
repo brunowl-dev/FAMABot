@@ -45,12 +45,11 @@ def esperaTempo():
         toast.show()
         parar.wait(30)
 
-t1 = threading.Thread(target=defineStray)
-t2 = threading.Thread(target=esperaTempo)
-
 def main(): 
-    t1.start()
-    t2.start()
+    avisoTrintaSeg = threading.Thread(target=esperaTempo, daemon=True)
+    avisoTrintaSeg.start()
+    defineStray()
 
 if __name__ == "__main__":
     main()
+    

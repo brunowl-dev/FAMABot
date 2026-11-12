@@ -17,7 +17,11 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
   - [x] `.env.example` (em `backend/`)
 - [x] 0.2 `CLAUDE.md` e README inicial
 - [x] 0.3 `docs/decisoes.md`: decisões arquiteturais e o motivo de cada descarte
-- [ ] 0.4 Revisar o tray app (Etapas 1 a 3) e propor refatoração mínima
+- [~] 0.4 Revisar o tray app (Etapas 1 a 3) e propor refatoração mínima
+  - [x] Renomear `testes.py` → `tray.py`
+  - [x] Caminho do logo via `Path(__file__)` (constante `LOGO`)
+  - [x] Extrair `cria_notificacao` (sem repetir `Notification`)
+  - [ ] Inverter threads: `icon.run()` na thread principal, loop numa thread `daemon`
 
 ## Fase 1 — Back-end base (Flask)
 - [ ] 1.1 App Flask com `/health` e tratamento de erros
@@ -84,4 +88,3 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 - [ ] 11.4 O que aprendi e o que faria diferente
 
 ## Pendências conhecidas
-- `testes.py` abre `"logo.png"` relativo ao diretório de execução, mas o arquivo está em `assets/`: o ícone não sobe (0.4)

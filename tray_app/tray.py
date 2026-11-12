@@ -26,7 +26,7 @@ def notifica_setor(icon, setor):
     toast = cria_notificacao("Novo atendimento", f"Cliente selecionou o {setor}")
     toast.show()
 
-def defineStray():
+def define_tray():
     imagem = Image.open(LOGO)
 
     menu = pystray.Menu(
@@ -39,16 +39,16 @@ def defineStray():
     icone = pystray.Icon("fama_notificacoes", imagem, "FAMA Notificações", menu)
     icone.run()
 
-def esperaTempo():
+def espera_tempo():
     while not parar.is_set():
         toast = cria_notificacao("Alerta", "30 SEGUNDOS")
         toast.show()
         parar.wait(30)
 
 def main(): 
-    avisoTrintaSeg = threading.Thread(target=esperaTempo, daemon=True)
-    avisoTrintaSeg.start()
-    defineStray()
+    aviso_trinta_seg = threading.Thread(target=espera_tempo, daemon=True)
+    aviso_trinta_seg.start()
+    define_tray()
 
 if __name__ == "__main__":
     main()

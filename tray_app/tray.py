@@ -5,23 +5,22 @@ import threading
 
 parar = threading.Event()
 
-def sair(icon, item):
-    parar.set()
-    toast = Notification(
-    app_id="FAMA Notificações",
-    title="Fechando o programa",
-    icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
+def cria_notificacao(titulo, mensagem=""):
+    return Notification(
+        app_id="FAMA Notificações",
+        title=titulo,
+        msg=mensagem,
+        icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
     )
+
+def sair(icon):
+    parar.set()
+    toast = cria_notificacao("Fechando o programa")
     toast.show()  
     icon.stop()
 
 def notifica_setor(icon, setor):
-    toast = Notification(
-    app_id="FAMA Notificações",
-    title="Novo atendimento",
-    msg=f"Cliente selecionou o setor {setor}",
-    icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
-    )
+    toast = cria_notificacao("Novo atendimento", f"Cliente selecionou o {setor}")
     toast.show()
 
 def defineStray():
@@ -39,12 +38,7 @@ def defineStray():
 
 def esperaTempo():
     while not parar.is_set():
-        toast = Notification(
-        app_id="FAMA Notificações",
-        title="Alerta",
-        msg="30 SEGUNDOS",
-        icon=r"c:/users/visitante/Documents/FAMABot/logo.png"
-        )
+        toast = cria_notificacao("Alerta", "30 SEGUNDOS")
         toast.show()
         parar.wait(30)
 

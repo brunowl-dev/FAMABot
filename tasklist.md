@@ -86,6 +86,3 @@ Uma task só é marcada `[x]` depois do commit e de o Bruno explicar com as pala
 - [ ] 11.2 Diagramas de arquitetura e de sequência
 - [ ] 11.3 Prints/GIF com dados fictícios
 - [ ] 11.4 O que aprendi e o que faria diferente
-
-## Pendências conhecidas
-- Tray: renomear funções e variáveis para `snake_case` (PEP 8)
